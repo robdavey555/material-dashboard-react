@@ -30,3 +30,6 @@ package-lock.json
 /ReactClient/obj/Debug
 /IdentityServer/bin/Debug/netcoreapp3.1
 /IdentityServer/obj
+/bin/Debug
+/obj
+/ReactClient/obj/Docker

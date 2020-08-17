@@ -21,6 +21,9 @@ import Button from "components/CustomButtons/Button.js";
 
 import styles from "assets/jss/material-dashboard-react/components/headerLinksStyle.js";
 
+//auth
+import { signoutRedirect } from 'services/userService'
+
 const useStyles = makeStyles(styles);
 
 export default function AdminNavbarLinks() {
@@ -46,6 +49,9 @@ export default function AdminNavbarLinks() {
   };
   const handleCloseProfile = () => {
     setOpenProfile(null);
+  };
+  const handleLogout = () => {
+      signoutRedirect();
   };
   return (
     <div>
@@ -207,7 +213,7 @@ export default function AdminNavbarLinks() {
                     </MenuItem>
                     <Divider light />
                     <MenuItem
-                      onClick={handleCloseProfile}
+                      onClick={handleLogout}
                       className={classes.dropdownItem}
                     >
                       Logout

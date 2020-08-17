@@ -30,28 +30,23 @@ namespace IdentityServer
                 {
                     ClientId = "react.client",
                     ClientName = "Client Credentials Client",
+                    ClientUri = "http://localhost:3000",
 
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    //ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
+                    RequireClientSecret = false,
 
-                    AllowedScopes = { "posts-api" }
-                },
+                    AllowedScopes = { "openid", "profile" },
 
-                // interactive client using code flow + pkce
-                new Client
-                {
-                    ClientId = "interactive",
-                    ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
+                    RedirectUris =
+                    {
+                        "http://localhost:3000/signin-oidc",
+                    },
+                    PostLogoutRedirectUris = { "http://localhost:3000/signout-oidc" },
+                    AllowedCorsOrigins = { "http://localhost:3000" },
 
-                    AllowedGrantTypes = GrantTypes.Code,
-
-                    RedirectUris = { "https://localhost:44300/signin-oidc" },
-                    FrontChannelLogoutUri = "https://localhost:44300/signout-oidc",
-                    PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
-
-                    AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "scope2" }
-                },
+                    AllowAccessTokensViaBrowser = true
+                }
             };
     }
 }
